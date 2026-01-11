@@ -5,6 +5,8 @@ import { fileURLToPath } from "node:url";
 import getMojFilters from "@ministryofjustice/frontend/moj/filters/all.js";
 import homeRouter from "./pages/home/index.js";
 import addItemRouter from "./pages/add-item/index.js";
+import nameRouter from "./pages/name/index.js";
+import nameSuccessRouter from "./pages/name-success/index.js";
 import timelineRouter from "./pages/timeline/index.js";
 
 const app = express();
@@ -67,6 +69,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", homeRouter);
 app.use("/add-item", addItemRouter);
+app.use("/name", nameRouter);
+app.use("/name/success", nameSuccessRouter);
 app.use("/timeline", timelineRouter);
 
 app.listen(port, () => {
