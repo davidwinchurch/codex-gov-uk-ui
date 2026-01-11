@@ -1,0 +1,106 @@
+{% extends "layout.njk" %}
+
+{% from "moj/components/timeline/macro.njk" import mojTimeline %}
+
+{% block content_body %}
+  <h1 class="govuk-heading-l">MOJ timeline example</h1>
+
+  {% set confirmationHtml %}
+    <p class="govuk-body">We've sent you a confirmation email.</p>
+  {% endset %}
+  {% set detailsHtml %}
+    <p class="govuk-body">Application submitted with reference MOJ-1234-5678.</p>
+  {% endset %}
+  {% set documentsHtml %}
+    <p class="govuk-body">2 documents uploaded.</p>
+  {% endset %}
+  {% set listHtml %}
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Identity documents</li>
+      <li>Proof of address</li>
+    </ul>
+  {% endset %}
+
+  {{ mojTimeline({
+    items: [
+      {
+        label: {
+          text: "Application requires confirmation"
+        },
+        html: confirmationHtml,
+        datetime: {
+          timestamp: "2019-06-14T14:01:00.000Z",
+          type: "datetime"
+        },
+        byline: {
+          text: "Joe Bloggs"
+        }
+      },
+      {
+        label: {
+          text: "Application review in progress"
+        },
+        text: "Your application is being reviewed by one of our case workers.",
+        datetime: {
+          timestamp: "2019-06-07T12:32:00.000Z",
+          type: "datetime"
+        },
+        byline: {
+          text: "Caseworker 1"
+        }
+      },
+      {
+        label: {
+          text: "Application received"
+        },
+        text: "Your application has been received - reference MOJ-1234-5678",
+        datetime: {
+          timestamp: "2019-06-06T09:12:00.000Z",
+          type: "datetime"
+        },
+        byline: {
+          text: "Caseworker 1"
+        }
+      },
+      {
+        label: {
+          text: "Application submitted"
+        },
+        html: detailsHtml,
+        datetime: {
+          timestamp: "2019-05-28T10:45:00.000Z",
+          type: "datetime"
+        },
+        byline: {
+          text: "Joe Bloggs"
+        }
+      },
+      {
+        label: {
+          text: "Documents uploaded"
+        },
+        html: documentsHtml,
+        datetime: {
+          timestamp: "2019-05-28T10:15:00.000Z",
+          type: "datetime"
+        },
+        byline: {
+          text: "Joe Bloggs"
+        }
+      },
+      {
+        label: {
+          text: "Application started"
+        },
+        html: listHtml,
+        datetime: {
+          timestamp: "2019-05-21T13:15:00.000Z",
+          type: "datetime"
+        },
+        byline: {
+          text: "Joe Bloggs"
+        }
+      }
+    ]
+  }) }}
+{% endblock %}

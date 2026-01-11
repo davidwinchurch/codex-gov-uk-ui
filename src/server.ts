@@ -3,6 +3,8 @@ import nunjucks from "nunjucks";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import getMojFilters from "@ministryofjustice/frontend/moj/filters/all.js";
+import homeRouter from "./pages/home/index.js";
+import timelineRouter from "./pages/timeline/index.js";
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -13,6 +15,7 @@ const projectRoot = path.resolve(__dirname, "..");
 const templates = [
   path.join(projectRoot, "node_modules/@ministryofjustice/frontend"),
   path.join(projectRoot, "node_modules/govuk-frontend/dist"),
+  path.join(projectRoot, "src/pages"),
   path.join(projectRoot, "views")
 ];
 
@@ -59,9 +62,8 @@ app.use(
   express.static(path.join(projectRoot, "node_modules/@ministryofjustice/frontend/moj"))
 );
 
-app.get("/", (_req, res) => {
-  res.render("index");
-});
+app.use("/", homeRouter);
+app.use("/timeline", timelineRouter);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
