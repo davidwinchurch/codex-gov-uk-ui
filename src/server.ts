@@ -2,7 +2,7 @@ import express from "express";
 import nunjucks from "nunjucks";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-//import mojFilters from '@ministryofjustice/frontend/moj/filters/all.js'
+import getMojFilters from "@ministryofjustice/frontend/moj/filters/all.js";
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -22,10 +22,9 @@ const env = nunjucks.configure(templates, {
   noCache: true
 });
 
-// TODO: fix the MOJ filters for the timeline component
-//Object.entries(mojFilters).forEach(([name, filter]) => {
-//  env.addFilter(name, filter);
-//});
+Object.entries(getMojFilters()).forEach(([name, filter]) => {
+  env.addFilter(name, filter as (...args: unknown[]) => unknown);
+});
 
 app.set("view engine", "njk");
 
