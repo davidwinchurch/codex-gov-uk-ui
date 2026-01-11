@@ -14,8 +14,9 @@
     "nunjucks": "latest"
   },
   "devDependencies": {
-    "@types/express": "latest",
     "@types/node": "latest",
+    "@types/express": "latest",
+    "@types/nunjucks": "latest",
     "tsx": "latest",
     "typescript": "latest"
   }
