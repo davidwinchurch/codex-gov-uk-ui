@@ -1,0 +1,23 @@
+{% extends "moj/template.njk" %}
+
+{% block pageTitle %}GOV.UK + MOJ Frontend demo{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/stylesheets/govuk-frontend.min.css">
+  <link rel="stylesheet" href="/stylesheets/moj-frontend.min.css">
+{% endblock %}
+
+{% block content %}
+  {% block content_body %}{% endblock %}
+{% endblock %}
+
+{% block bodyEnd %}
+  {{ super() }}
+  <script src="/javascripts/govuk-frontend.min.js"></script>
+  <script src="/javascripts/moj-frontend.min.js"></script>
+  <script>
+    window.GOVUKFrontend?.initAll();
+    window.MOJFrontend?.initAll();
+  </script>
+{% endblock %}

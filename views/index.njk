@@ -1,0 +1,19 @@
+{% extends "layout.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "moj/components/badge/macro.njk" import mojBadge %}
+
+{% block content_body %}
+  <h1 class="govuk-heading-l">GOV.UK + MOJ Frontend</h1>
+  <p class="govuk-body">This page proves GOV.UK Frontend and MOJ Frontend assets are loading.</p>
+
+  {{ govukButton({
+    text: "GOV.UK Button",
+    href: "#"
+  }) }}
+
+  {{ mojBadge({
+    text: "MOJ Badge",
+    classes: "moj-badge--blue"
+  }) }}
+{% endblock %}

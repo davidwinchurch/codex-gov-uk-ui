@@ -1,0 +1,22 @@
+{
+  "name": "codex-gov-uk-ui",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@ministryofjustice/frontend": "latest",
+    "express": "latest",
+    "govuk-frontend": "latest",
+    "nunjucks": "latest"
+  },
+  "devDependencies": {
+    "@types/express": "latest",
+    "@types/node": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}
