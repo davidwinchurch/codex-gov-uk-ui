@@ -1,0 +1,47 @@
+{% extends "layout.njk" %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content_body %}
+  <h1 class="govuk-heading-l">Add an item</h1>
+
+  <form method="post" action="/add-item">
+    {{ govukInput({
+      label: {
+        text: "Item title"
+      },
+      id: "title",
+      name: "title",
+      value: values.title
+    }) }}
+
+    {{ govukTextarea({
+      label: {
+        text: "Item details"
+      },
+      id: "details",
+      name: "details",
+      value: values.details
+    }) }}
+
+    {{ govukButton({
+      text: "Save"
+    }) }}
+  </form>
+
+  {% if values.title or values.details %}
+    <h2 class="govuk-heading-m">Submitted values</h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Item title</dt>
+        <dd class="govuk-summary-list__value">{{ values.title }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Item details</dt>
+        <dd class="govuk-summary-list__value">{{ values.details }}</dd>
+      </div>
+    </dl>
+  {% endif %}
+{% endblock %}

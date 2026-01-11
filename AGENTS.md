@@ -27,6 +27,27 @@ Rules:
 - Pages must not share templates (except `views/layout.njk`)
 - No inline routes in `server.ts`
 
+## Validation (Zod)
+
+Validation uses Zod.
+
+Rules:
+- Each page that needs validation MUST define its schemas in a separate file in the same page folder:
+  - `schema.ts` (preferred name)
+- The page controller (`index.ts`) imports schemas from `schema.ts`.
+- Schemas must be small, explicit, and page-local (do not create a shared schema library yet).
+- Validate request inputs at the boundary:
+  - For GET query params: validate `req.query`
+  - For POST bodies: validate `req.body`
+- Use `safeParse` and handle validation errors by re-rendering the page with:
+  - field-level errors
+  - a GOV.UK error summary (preferred)
+- Do not add additional validation libraries.
+
+Schema conventions:
+- Export a `formSchema` for POST body validation.
+- Export a `querySchema` for GET query validation when needed.
+
 ## Routing
 
 - `server.ts` is responsible only for:
